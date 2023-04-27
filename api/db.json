@@ -1,4 +1,21 @@
 {
-  "tasks": [],
+  "tasks": [
+    {
+      "addedDate": "2023-04-27T17:28:57.657Z",
+      "description": "dzisiaj!",
+      "name": "umyć okna",
+      "status": "open",
+      "apiId": "v1",
+      "id": 1
+    },
+    {
+      "addedDate": "2023-04-27T17:47:47.915Z",
+      "description": "dzisiaj",
+      "name": "sprzątać",
+      "status": "open",
+      "apiId": "v1",
+      "id": 2
+    }
+  ],
   "operations": []
 }
