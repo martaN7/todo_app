@@ -1,20 +1,12 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-04-27T17:28:57.657Z",
-      "description": "dzisiaj!",
-      "name": "umyć okna",
+      "addedDate": "2023-04-27T18:14:35.030Z",
+      "description": "sdfsdf",
+      "name": "sdfdsfsdf",
       "status": "open",
       "apiId": "v1",
-      "id": 1
-    },
-    {
-      "addedDate": "2023-04-27T17:47:47.915Z",
-      "description": "dzisiaj",
-      "name": "sprzątać",
-      "status": "open",
-      "apiId": "v1",
-      "id": 2
+      "id": 3
     }
   ],
   "operations": []
