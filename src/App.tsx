@@ -6,6 +6,7 @@ import {
     getTasksApi,
     Operation,
 } from './helpers/Api.ts';
+import AddSpentTimeForm from './components/AddSpentTimeForm.tsx';
 
 export interface TaskStatus {
     status: 'open' | 'closed';
@@ -23,6 +24,9 @@ function App() {
     const [description, setDescription] = useState('');
     const [tasks, setTasks] = useState<Task[]>([]);
     const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+    const [activeOperationId, setActiveOperationId] = useState<number | null>(
+        null
+    );
 
     useEffect(() => {
         const responses = Promise.all([getTasksApi(), getOperationsApi()]);
@@ -136,7 +140,23 @@ function App() {
                                 <div key={operation.id}>
                                     {operation.description}{' '}
                                     {operation.spentTime}
-                                    <button>Add spent time</button>
+                                    {activeOperationId === operation.id ? (
+                                        <AddSpentTimeForm
+                                            operation={operation}
+                                            setTasks={setTasks}
+                                            onCancel={setActiveOperationId}
+                                        />
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                setActiveOperationId(
+                                                    operation.id
+                                                )
+                                            }
+                                        >
+                                            Add spent time
+                                        </button>
+                                    )}
                                     <button>Delete</button>
                                 </div>
                             ))}
