@@ -1,30 +1,23 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { OperationForm } from './components/OperationForm.tsx';
+import { callApi } from './helpers/Api.ts';
 
-interface TaskStatus {
+export interface TaskStatus {
     status: 'open' | 'closed';
 }
-interface Task extends TaskStatus {
+export interface Task extends TaskStatus {
     name: string;
     description: string;
     addedDate: Date;
     id: number;
 }
-type TaskApiArgs = {
-    endpoint: string;
-    data: Omit<Task, 'id'> | TaskStatus;
-    method: 'post' | 'patch' | 'put';
-};
-
-type TaskApiArgsWithoutData = {
-    method: 'get' | 'delete';
-    endpoint: string;
-};
 
 function App() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
 
     useEffect(() => {
         getTasksApi('tasks').then(setTasks);
@@ -37,36 +30,8 @@ function App() {
         return response.data;
     }
 
-    async function sendTaskApi(
-        config: TaskApiArgs | TaskApiArgsWithoutData
-    ): Promise<Task> {
-        const { method, endpoint } = config;
-        const requestConfig: {
-            method: string;
-            url: string;
-            data?: Task | TaskStatus;
-        } = {
-            method,
-            url: `http://localhost:3000/api/v1/${endpoint}`,
-        };
-
-        if (!['get', 'delete'].includes(method)) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            requestConfig.data = config.data;
-        }
-
-        try {
-            const response = await axios(requestConfig);
-            return response.data;
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-    }
-
     async function handleSubmit() {
-        const data = await sendTaskApi({
+        const data = await callApi({
             data: {
                 addedDate: new Date(),
                 description,
@@ -83,7 +48,7 @@ function App() {
 
     function handleFinishTask(task: Task) {
         return async function () {
-            await sendTaskApi({
+            await callApi({
                 endpoint: `tasks/${task.id}`,
                 data: { status: 'closed' },
                 method: 'patch',
@@ -96,7 +61,7 @@ function App() {
 
     function handleDeleteTask(id: number) {
         return async function () {
-            await sendTaskApi({
+            await callApi({
                 endpoint: `tasks/${id}`,
                 method: 'delete',
             });
@@ -133,15 +98,27 @@ function App() {
                     <div key={task.id}>
                         <b>{task.name} </b>
                         <span>{task.description} </span>
-                        <button>Add operation</button>
                         {task.status === 'open' && (
-                            <button onClick={handleFinishTask(task)}>
-                                Finish
-                            </button>
+                            <>
+                                <button
+                                    onClick={() => setActiveTaskId(task.id)}
+                                >
+                                    Add operation
+                                </button>
+                                <button onClick={handleFinishTask(task)}>
+                                    Finish
+                                </button>
+                            </>
                         )}
                         <button onClick={handleDeleteTask(task.id)}>
                             Delete
                         </button>
+                        {activeTaskId === task.id && (
+                            <OperationForm
+                                taskId={task.id}
+                                onCancel={setActiveTaskId}
+                            />
+                        )}
                     </div>
                 ))}
             </div>
