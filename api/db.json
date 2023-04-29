@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-04-27T18:14:35.030Z",
-      "description": "sdfsdf",
-      "name": "sdfdsfsdf",
-      "status": "closed",
-      "id": 3
-    },
-    {
       "addedDate": "2023-04-27T20:14:07.583Z",
       "description": "asdad",
       "name": "asdad",
@@ -15,97 +8,69 @@
       "id": 4
     },
     {
-      "addedDate": "2023-04-27T20:14:11.024Z",
-      "description": "cc",
-      "name": "asdad",
-      "status": "open",
+      "addedDate": "2023-04-29T11:17:24.096Z",
+      "description": "asdd",
+      "name": "sdasd",
+      "status": "closed",
       "id": 5
     },
     {
-      "addedDate": "2023-04-27T20:24:16.441Z",
+      "addedDate": "2023-04-29T11:20:16.344Z",
       "description": "sdsd",
-      "name": "asaff",
-      "status": "open",
+      "name": "ssdsd",
+      "status": "closed",
       "id": 6
     },
     {
-      "addedDate": "2023-04-29T07:08:29.369Z",
-      "description": "asdasd",
+      "addedDate": "2023-04-29T11:26:18.944Z",
+      "description": "lkjlsd",
       "name": "elo",
-      "status": "open",
+      "status": "closed",
       "id": 7
     },
     {
-      "addedDate": "2023-04-29T07:13:26.270Z",
-      "description": "sdfsf",
-      "name": "geerg",
-      "status": "open",
+      "addedDate": "2023-04-29T11:33:59.209Z",
+      "description": "asdad",
+      "name": "asdad",
+      "status": "closed",
       "id": 8
-    },
-    {
-      "addedDate": "2023-04-29T08:56:08.791Z",
-      "description": "asad",
-      "name": "jslksda",
-      "status": "open",
-      "id": 9
     }
   ],
   "operations": [
     {
-      "description": "plok",
-      "addedDate": "2023-04-29T06:47:18.773Z",
-      "spentTime": 0,
+      "description": "opr",
+      "addedDate": "2023-04-29T11:17:31.511Z",
+      "spentTime": 3,
       "taskId": 5,
       "id": 1
     },
     {
-      "description": "poksd",
-      "addedDate": "2023-04-29T06:56:20.270Z",
-      "spentTime": 0,
-      "taskId": 5,
+      "description": "opr",
+      "addedDate": "2023-04-29T11:20:21.147Z",
+      "spentTime": 5,
+      "taskId": 6,
       "id": 2
     },
     {
-      "description": "poksd",
-      "addedDate": "2023-04-29T06:56:23.925Z",
+      "description": "loo",
+      "addedDate": "2023-04-29T11:26:25.614Z",
       "spentTime": 0,
-      "taskId": 5,
+      "taskId": 7,
       "id": 3
     },
     {
-      "description": "cos",
-      "addedDate": "2023-04-29T07:07:54.065Z",
-      "spentTime": 0,
-      "taskId": 5,
-      "id": 4
-    },
-    {
-      "description": "sadsad",
-      "addedDate": "2023-04-29T07:08:04.998Z",
-      "spentTime": 0,
-      "taskId": 5,
+      "description": "opr 2",
+      "addedDate": "2023-04-29T11:34:11.102Z",
+      "spentTime": 5,
+      "taskId": 8,
       "id": 5
     },
     {
-      "description": "lssd",
-      "addedDate": "2023-04-29T08:56:14.663Z",
-      "spentTime": 0,
-      "taskId": 9,
+      "description": "opr 3",
+      "addedDate": "2023-04-29T11:48:04.426Z",
+      "spentTime": 168,
+      "taskId": 8,
       "id": 6
-    },
-    {
-      "description": "asdad",
-      "addedDate": "2023-04-29T10:01:45.501Z",
-      "spentTime": 9,
-      "taskId": 6,
-      "id": 7
-    },
-    {
-      "description": "asdad",
-      "addedDate": "2023-04-29T10:02:48.043Z",
-      "spentTime": 18,
-      "taskId": 6,
-      "id": 8
     }
   ]
 }
