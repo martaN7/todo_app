@@ -5,7 +5,6 @@
       "description": "sdfsdf",
       "name": "sdfdsfsdf",
       "status": "closed",
-      "apiId": "v1",
       "id": 3
     },
     {
@@ -28,7 +27,57 @@
       "name": "asaff",
       "status": "open",
       "id": 6
+    },
+    {
+      "addedDate": "2023-04-29T07:08:29.369Z",
+      "description": "asdasd",
+      "name": "elo",
+      "status": "open",
+      "id": 7
+    },
+    {
+      "addedDate": "2023-04-29T07:13:26.270Z",
+      "description": "sdfsf",
+      "name": "geerg",
+      "status": "open",
+      "id": 8
     }
   ],
-  "operations": []
+  "operations": [
+    {
+      "description": "plok",
+      "addedDate": "2023-04-29T06:47:18.773Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 1
+    },
+    {
+      "description": "poksd",
+      "addedDate": "2023-04-29T06:56:20.270Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 2
+    },
+    {
+      "description": "poksd",
+      "addedDate": "2023-04-29T06:56:23.925Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 3
+    },
+    {
+      "description": "cos",
+      "addedDate": "2023-04-29T07:07:54.065Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 4
+    },
+    {
+      "description": "sadsad",
+      "addedDate": "2023-04-29T07:08:04.998Z",
+      "spentTime": 0,
+      "taskId": 5,
+      "id": 5
+    }
+  ]
 }
