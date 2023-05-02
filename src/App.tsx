@@ -9,23 +9,20 @@ import {
 } from './helpers/Api.ts';
 import AddSpentTimeForm from './components/AddSpentTimeForm.tsx';
 import {
-    Box,
     Button,
     Chip,
     Collapse,
     Container,
-    IconButton,
+    Divider,
     List,
     ListItem,
     ListItemButton,
-    ListItemIcon,
     ListItemText,
-    ListSubheader,
     Stack,
     TextField,
     Typography,
 } from '@mui/material';
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
@@ -169,10 +166,14 @@ function App() {
                     </Button>
                 </Stack>
             </form>
-            <Box>
+            <List>
                 {tasks.map(task => (
                     <Fragment key={task.id}>
                         <ListItemButton
+                            sx={{
+                                backgroundColor: '#fafafa',
+                                mt: 2,
+                            }}
                             onClick={() => handleExpandTask(task.id)}
                         >
                             <ListItemText
@@ -195,7 +196,11 @@ function App() {
                                         variant="contained"
                                         color="primary"
                                         size="small"
-                                        sx={{ textTransform: 'none' }}
+                                        sx={{
+                                            textTransform: 'none',
+                                            mr: 1,
+                                            ml: 1,
+                                        }}
                                         startIcon={<DoneAllIcon />}
                                         onClick={handleFinishTask(task)}
                                     >
@@ -213,7 +218,7 @@ function App() {
                                 variant="contained"
                                 color="error"
                                 size="small"
-                                sx={{ textTransform: 'none' }}
+                                sx={{ textTransform: 'none', mr: 2 }}
                                 startIcon={<DeleteIcon />}
                                 onClick={handleDeleteTask(task)}
                             >
@@ -240,9 +245,77 @@ function App() {
                                 timeout="auto"
                                 unmountOnExit
                             >
-                                <List component="div" disablePadding>
-                                    <ListItem sx={{ pl: 4 }}>
+                                <List
+                                    sx={{
+                                        borderColor: '#d4d6d6',
+                                        pt: 1,
+                                    }}
+                                    component="div"
+                                    disablePadding
+                                >
+                                    <ListItem
+                                        sx={{
+                                            p: 1,
+                                            pl: 3,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                        secondaryAction={
+                                            activeOperationId ===
+                                            operation.id ? (
+                                                <AddSpentTimeForm
+                                                    operation={operation}
+                                                    setTasks={setTasks}
+                                                    onCancel={
+                                                        setActiveOperationId
+                                                    }
+                                                />
+                                            ) : (
+                                                task.status === 'open' && (
+                                                    <>
+                                                        <Button
+                                                            variant="outlined"
+                                                            color="success"
+                                                            size="small"
+                                                            startIcon={
+                                                                <AccessTimeIcon />
+                                                            }
+                                                            onClick={() =>
+                                                                setActiveOperationId(
+                                                                    operation.id
+                                                                )
+                                                            }
+                                                        >
+                                                            Add time
+                                                        </Button>
+                                                        <Button
+                                                            variant="outlined"
+                                                            color="error"
+                                                            size="small"
+                                                            sx={{
+                                                                textTransform:
+                                                                    'none',
+                                                            }}
+                                                            startIcon={
+                                                                <DeleteIcon />
+                                                            }
+                                                            onClick={handleDeleteOperation(
+                                                                operation
+                                                            )}
+                                                        >
+                                                            Delete
+                                                        </Button>
+                                                    </>
+                                                )
+                                            )
+                                        }
+                                    >
                                         <ListItemText
+                                            sx={{
+                                                pb: 2,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                            }}
                                             primary={
                                                 <>
                                                     <Typography
@@ -269,52 +342,14 @@ function App() {
                                                 </>
                                             }
                                         />
-                                        {activeOperationId === operation.id ? (
-                                            <AddSpentTimeForm
-                                                operation={operation}
-                                                setTasks={setTasks}
-                                                onCancel={setActiveOperationId}
-                                            />
-                                        ) : (
-                                            task.status === 'open' && (
-                                                <Button
-                                                    variant="outlined"
-                                                    color="success"
-                                                    size="small"
-                                                    startIcon={
-                                                        <AccessTimeIcon />
-                                                    }
-                                                    onClick={() =>
-                                                        setActiveOperationId(
-                                                            operation.id
-                                                        )
-                                                    }
-                                                >
-                                                    Add time
-                                                </Button>
-                                            )
-                                        )}
-                                        {task.status === 'open' && (
-                                            <Button
-                                                variant="outlined"
-                                                color="error"
-                                                size="small"
-                                                sx={{ textTransform: 'none' }}
-                                                startIcon={<DeleteIcon />}
-                                                onClick={handleDeleteOperation(
-                                                    operation
-                                                )}
-                                            >
-                                                Delete
-                                            </Button>
-                                        )}
                                     </ListItem>
+                                    <Divider variant="middle" component="li" />
                                 </List>
                             </Collapse>
                         ))}
                     </Fragment>
                 ))}
-            </Box>
+            </List>
         </Container>
     );
 }

@@ -4,7 +4,7 @@
       "addedDate": "2023-05-02T16:11:46.309Z",
       "description": "not important",
       "name": "Task 2",
-      "status": "open",
+      "status": "closed",
       "id": 2
     },
     {
@@ -13,6 +13,13 @@
       "name": "Task 3",
       "status": "open",
       "id": 3
+    },
+    {
+      "addedDate": "2023-05-02T20:04:45.788Z",
+      "description": "very urgent task",
+      "name": "Task 4",
+      "status": "open",
+      "id": 4
     }
   ],
   "operations": [
@@ -29,6 +36,20 @@
       "spentTime": 25,
       "taskId": 3,
       "id": 4
+    },
+    {
+      "description": "opr 2",
+      "addedDate": "2023-05-02T19:48:59.678Z",
+      "spentTime": 0,
+      "taskId": 2,
+      "id": 5
+    },
+    {
+      "description": "opr 34",
+      "addedDate": "2023-05-02T19:49:49.122Z",
+      "spentTime": 0,
+      "taskId": 2,
+      "id": 6
     }
   ]
 }
