@@ -1,76 +1,34 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-04-27T20:14:07.583Z",
-      "description": "asdad",
-      "name": "asdad",
-      "status": "closed",
-      "id": 4
+      "addedDate": "2023-05-02T16:11:46.309Z",
+      "description": "not important",
+      "name": "Task 2",
+      "status": "open",
+      "id": 2
     },
     {
-      "addedDate": "2023-04-29T11:17:24.096Z",
-      "description": "asdd",
-      "name": "sdasd",
-      "status": "closed",
-      "id": 5
-    },
-    {
-      "addedDate": "2023-04-29T11:20:16.344Z",
-      "description": "sdsd",
-      "name": "ssdsd",
-      "status": "closed",
-      "id": 6
-    },
-    {
-      "addedDate": "2023-04-29T11:26:18.944Z",
-      "description": "lkjlsd",
-      "name": "elo",
-      "status": "closed",
-      "id": 7
-    },
-    {
-      "addedDate": "2023-04-29T11:33:59.209Z",
-      "description": "asdad",
-      "name": "asdad",
-      "status": "closed",
-      "id": 8
+      "addedDate": "2023-05-02T16:24:56.930Z",
+      "description": "lol",
+      "name": "Task 3",
+      "status": "open",
+      "id": 3
     }
   ],
   "operations": [
     {
-      "description": "opr",
-      "addedDate": "2023-04-29T11:17:31.511Z",
-      "spentTime": 3,
-      "taskId": 5,
-      "id": 1
-    },
-    {
-      "description": "opr",
-      "addedDate": "2023-04-29T11:20:21.147Z",
-      "spentTime": 5,
-      "taskId": 6,
-      "id": 2
-    },
-    {
-      "description": "loo",
-      "addedDate": "2023-04-29T11:26:25.614Z",
-      "spentTime": 0,
-      "taskId": 7,
+      "description": "sdsd",
+      "addedDate": "2023-05-02T16:12:00.080Z",
+      "spentTime": 66,
+      "taskId": 2,
       "id": 3
     },
     {
-      "description": "opr 2",
-      "addedDate": "2023-04-29T11:34:11.102Z",
-      "spentTime": 5,
-      "taskId": 8,
-      "id": 5
-    },
-    {
-      "description": "opr 3",
-      "addedDate": "2023-04-29T11:48:04.426Z",
-      "spentTime": 168,
-      "taskId": 8,
-      "id": 6
+      "description": "opr 34",
+      "addedDate": "2023-05-02T16:37:04.129Z",
+      "spentTime": 25,
+      "taskId": 3,
+      "id": 4
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { OperationForm } from './components/OperationForm.tsx';
 import {
     callOperationsApi,
@@ -8,8 +8,28 @@ import {
     Operation,
 } from './helpers/Api.ts';
 import AddSpentTimeForm from './components/AddSpentTimeForm.tsx';
-import { Button, Container, Stack, TextField } from '@mui/material';
-import { BatteryUnknown } from '@mui/icons-material';
+import {
+    Box,
+    Button,
+    Chip,
+    Collapse,
+    Container,
+    IconButton,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    ListSubheader,
+    Stack,
+    TextField,
+    Typography,
+} from '@mui/material';
+import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export interface TaskStatus {
     status: 'open' | 'closed';
@@ -30,6 +50,11 @@ function App() {
     const [activeOperationId, setActiveOperationId] = useState<number | null>(
         null
     );
+    const [expandTaskId, setExpandTaskId] = useState(0);
+
+    const handleExpandTask = (id: number) => {
+        setExpandTaskId(expandTaskId === id ? 0 : id);
+    };
 
     useEffect(() => {
         const responses = Promise.all([getTasksApi(), getOperationsApi()]);
@@ -82,14 +107,6 @@ function App() {
                 id: taskToDelete.id,
                 method: 'delete',
             });
-
-            // todo pamiętać, że poza json serverem to może być konieczne
-            // for (const operation of taskToDelete.operations) {
-            //     await callOperationsApi({
-            //         id: operation.id,
-            //         method: 'delete',
-            //     });
-            // }
 
             setTasks(tasks.filter(task => task.id !== taskToDelete.id));
         };
@@ -152,26 +169,63 @@ function App() {
                     </Button>
                 </Stack>
             </form>
-            <div>
+            <Box>
                 {tasks.map(task => (
-                    <div key={task.id}>
-                        <b>{task.name} </b>
-                        <span>{task.description} </span>
-                        {task.status === 'open' ? (
-                            <>
-                                <button
-                                    onClick={() => setActiveTaskId(task.id)}
-                                >
-                                    Add operation
-                                </button>
-                                <button onClick={handleFinishTask(task)}>
-                                    Finish
-                                </button>
-                            </>
-                        ) : (
-                            <b>{calculateTotalTime(task.operations)}</b>
-                        )}
-                        <button onClick={handleDeleteTask(task)}>Delete</button>
+                    <Fragment key={task.id}>
+                        <ListItemButton
+                            onClick={() => handleExpandTask(task.id)}
+                        >
+                            <ListItemText
+                                primary={task.name}
+                                secondary={task.description}
+                            />
+                            {task.status === 'open' ? (
+                                <>
+                                    <Button
+                                        variant="contained"
+                                        color="success"
+                                        size="small"
+                                        sx={{ textTransform: 'none' }}
+                                        startIcon={<AddCircleOutlineIcon />}
+                                        onClick={() => setActiveTaskId(task.id)}
+                                    >
+                                        Add operation
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="small"
+                                        sx={{ textTransform: 'none' }}
+                                        startIcon={<DoneAllIcon />}
+                                        onClick={handleFinishTask(task)}
+                                    >
+                                        Finish
+                                    </Button>
+                                </>
+                            ) : (
+                                <ListItemText
+                                    primary={calculateTotalTime(
+                                        task.operations
+                                    )}
+                                />
+                            )}
+                            <Button
+                                variant="contained"
+                                color="error"
+                                size="small"
+                                sx={{ textTransform: 'none' }}
+                                startIcon={<DeleteIcon />}
+                                onClick={handleDeleteTask(task)}
+                            >
+                                Delete
+                            </Button>
+                            {expandTaskId === task.id ? (
+                                <ExpandLess />
+                            ) : (
+                                <ExpandMore />
+                            )}
+                        </ListItemButton>
+
                         {activeTaskId === task.id && (
                             <OperationForm
                                 taskId={task.id}
@@ -179,48 +233,88 @@ function App() {
                                 setTasks={setTasks}
                             />
                         )}
-                        <div>
-                            <hr />
-                            {task.operations.map(operation => (
-                                <div key={operation.id}>
-                                    {operation.description}{' '}
-                                    {~~(operation.spentTime / 60)}h{' '}
-                                    {operation.spentTime % 60}m
-                                    {activeOperationId === operation.id ? (
-                                        <AddSpentTimeForm
-                                            operation={operation}
-                                            setTasks={setTasks}
-                                            onCancel={setActiveOperationId}
+                        {task.operations.map(operation => (
+                            <Collapse
+                                key={operation.id}
+                                in={expandTaskId === task.id}
+                                timeout="auto"
+                                unmountOnExit
+                            >
+                                <List component="div" disablePadding>
+                                    <ListItem sx={{ pl: 4 }}>
+                                        <ListItemText
+                                            primary={
+                                                <>
+                                                    <Typography
+                                                        sx={{
+                                                            display: 'inline',
+                                                            pr: 2,
+                                                        }}
+                                                    >
+                                                        {operation.description}
+                                                    </Typography>
+                                                    <Chip
+                                                        label={`${~~(
+                                                            operation.spentTime /
+                                                            60
+                                                        )}h ${
+                                                            operation.spentTime %
+                                                            60
+                                                        }m`}
+                                                        color="success"
+                                                        sx={{
+                                                            display: 'inline',
+                                                        }}
+                                                    />
+                                                </>
+                                            }
                                         />
-                                    ) : (
-                                        task.status === 'open' && (
-                                            <button
-                                                onClick={() =>
-                                                    setActiveOperationId(
-                                                        operation.id
-                                                    )
-                                                }
+                                        {activeOperationId === operation.id ? (
+                                            <AddSpentTimeForm
+                                                operation={operation}
+                                                setTasks={setTasks}
+                                                onCancel={setActiveOperationId}
+                                            />
+                                        ) : (
+                                            task.status === 'open' && (
+                                                <Button
+                                                    variant="outlined"
+                                                    color="success"
+                                                    size="small"
+                                                    startIcon={
+                                                        <AccessTimeIcon />
+                                                    }
+                                                    onClick={() =>
+                                                        setActiveOperationId(
+                                                            operation.id
+                                                        )
+                                                    }
+                                                >
+                                                    Add time
+                                                </Button>
+                                            )
+                                        )}
+                                        {task.status === 'open' && (
+                                            <Button
+                                                variant="outlined"
+                                                color="error"
+                                                size="small"
+                                                sx={{ textTransform: 'none' }}
+                                                startIcon={<DeleteIcon />}
+                                                onClick={handleDeleteOperation(
+                                                    operation
+                                                )}
                                             >
-                                                Add spent time
-                                            </button>
-                                        )
-                                    )}
-                                    {task.status === 'open' && (
-                                        <button
-                                            onClick={handleDeleteOperation(
-                                                operation
-                                            )}
-                                        >
-                                            Delete
-                                        </button>
-                                    )}
-                                </div>
-                            ))}
-                            <br />
-                        </div>
-                    </div>
+                                                Delete
+                                            </Button>
+                                        )}
+                                    </ListItem>
+                                </List>
+                            </Collapse>
+                        ))}
+                    </Fragment>
                 ))}
-            </div>
+            </Box>
         </Container>
     );
 }
