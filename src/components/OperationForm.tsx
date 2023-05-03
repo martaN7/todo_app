@@ -1,20 +1,22 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, useContext, useState } from 'react';
 import { callOperationsApi, Operation } from '../helpers/Api.ts';
-import { Task } from '../App.tsx';
 import { Button, TextField } from '@mui/material';
+import { TasksContext } from '../helpers/TaskContext.tsx';
 
 interface OperationFormProps {
     onCancel: Dispatch<number | null>;
     taskId: number;
-    setTasks: Dispatch<SetStateAction<Task[]>>;
+    setExpandTaskId: Dispatch<number>;
 }
 
 export function OperationForm({
     onCancel,
     taskId,
-    setTasks,
+    setExpandTaskId,
 }: OperationFormProps) {
     const [value, setValue] = useState('');
+
+    const { setTasks } = useContext(TasksContext);
 
     async function handleAddOperation(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -39,6 +41,7 @@ export function OperationForm({
         );
 
         onCancel(null);
+        setExpandTaskId(taskId);
     }
 
     return (
@@ -46,8 +49,9 @@ export function OperationForm({
             style={{
                 marginTop: 10,
                 display: 'flex',
-                alignContent: 'center',
+                alignItems: 'center',
                 gap: 5,
+                marginLeft: 20,
             }}
             onSubmit={handleAddOperation}
         >

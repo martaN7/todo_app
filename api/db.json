@@ -1,55 +1,69 @@
 {
   "tasks": [
     {
-      "addedDate": "2023-05-02T16:11:46.309Z",
-      "description": "not important",
-      "name": "Task 2",
+      "addedDate": "2023-05-03T15:55:39.247Z",
+      "description": "important things",
+      "name": "Task 1",
       "status": "closed",
+      "id": 1
+    },
+    {
+      "addedDate": "2023-05-03T16:37:44.446Z",
+      "description": "sdasdjkaldjkladkjlakjdcasdasd",
+      "name": "Task 2",
+      "status": "open",
       "id": 2
-    },
-    {
-      "addedDate": "2023-05-02T16:24:56.930Z",
-      "description": "lol",
-      "name": "Task 3",
-      "status": "open",
-      "id": 3
-    },
-    {
-      "addedDate": "2023-05-02T20:04:45.788Z",
-      "description": "very urgent task",
-      "name": "Task 4",
-      "status": "open",
-      "id": 4
     }
   ],
   "operations": [
     {
-      "description": "sdsd",
-      "addedDate": "2023-05-02T16:12:00.080Z",
-      "spentTime": 66,
-      "taskId": 2,
-      "id": 3
-    },
-    {
-      "description": "opr 34",
-      "addedDate": "2023-05-02T16:37:04.129Z",
-      "spentTime": 25,
-      "taskId": 3,
-      "id": 4
+      "description": "opr 1",
+      "addedDate": "2023-05-03T15:55:44.860Z",
+      "spentTime": 3,
+      "taskId": 1,
+      "id": 1
     },
     {
       "description": "opr 2",
-      "addedDate": "2023-05-02T19:48:59.678Z",
+      "addedDate": "2023-05-03T15:55:49.799Z",
       "spentTime": 0,
-      "taskId": 2,
+      "taskId": 1,
+      "id": 2
+    },
+    {
+      "description": "opr 3",
+      "addedDate": "2023-05-03T16:03:00.004Z",
+      "spentTime": 0,
+      "taskId": 1,
       "id": 5
     },
     {
-      "description": "opr 34",
-      "addedDate": "2023-05-02T19:49:49.122Z",
+      "description": "opr 4",
+      "addedDate": "2023-05-03T16:03:45.061Z",
+      "spentTime": 0,
+      "taskId": 1,
+      "id": 6
+    },
+    {
+      "description": "opr 5",
+      "addedDate": "2023-05-03T16:06:22.302Z",
+      "spentTime": 0,
+      "taskId": 1,
+      "id": 7
+    },
+    {
+      "description": "opre",
+      "addedDate": "2023-05-03T16:37:58.563Z",
       "spentTime": 0,
       "taskId": 2,
-      "id": 6
+      "id": 8
+    },
+    {
+      "description": "dassdd",
+      "addedDate": "2023-05-03T16:38:07.687Z",
+      "spentTime": 0,
+      "taskId": 2,
+      "id": 9
     }
   ]
 }
