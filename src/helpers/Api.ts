@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { Task, TaskStatus } from '../App.tsx';
+import { Operation, OperationTime, Task, TaskStatus } from './BasicTypes.ts';
 
 export async function callTasksApi(
     config: TaskApiArgs | TaskApiArgsData | CallApiArgsId
@@ -79,17 +79,6 @@ export async function getOperationsApi(): Promise<Operation[]> {
         `http://localhost:3000/api/v1/operations`
     );
     return response.data;
-}
-
-export interface OperationTime {
-    spentTime: number;
-}
-
-export interface Operation extends OperationTime {
-    id: number;
-    description: string;
-    addedDate: Date;
-    taskId: number;
 }
 
 type CallApiArgs = {

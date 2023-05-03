@@ -1,3 +1,4 @@
+import { Fragment, useContext, useState } from 'react';
 import {
     Button,
     Chip,
@@ -10,12 +11,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { OperationForm } from './OperationForm.tsx';
-import { Fragment, useContext, useState } from 'react';
+import OperationForm from './OperationForm.tsx';
 import OperationComponent from './OperationComponent.tsx';
-import { callTasksApi, Operation } from '../helpers/Api.ts';
+import { callTasksApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
-import { Task } from '../App.tsx';
+import { Operation, Task } from '../helpers/BasicTypes.ts';
 
 interface TaskComponentPropsTypes {
     task: Task;

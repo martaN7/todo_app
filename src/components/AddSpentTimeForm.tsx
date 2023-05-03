@@ -1,7 +1,8 @@
 import { Dispatch, FormEvent, useContext, useState } from 'react';
-import { callOperationsApi, Operation } from '../helpers/Api.ts';
 import { Button, TextField } from '@mui/material';
+import { callOperationsApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
+import { Operation } from '../helpers/BasicTypes.ts';
 
 interface AddSpentTimeProps {
     operation: Operation;

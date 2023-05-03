@@ -1,3 +1,4 @@
+import { useContext, useState } from 'react';
 import {
     Button,
     Chip,
@@ -5,13 +6,12 @@ import {
     ListItemText,
     Typography,
 } from '@mui/material';
-import AddSpentTimeForm from './AddSpentTimeForm.tsx';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useContext, useState } from 'react';
-import { callOperationsApi, Operation } from '../helpers/Api.ts';
+import AddSpentTimeForm from './AddSpentTimeForm.tsx';
+import { callOperationsApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
-import { Task } from '../App.tsx';
+import { Operation, Task } from '../helpers/BasicTypes.ts';
 
 interface OperationComponentPropsTypes {
     operation: Operation;
@@ -37,7 +37,8 @@ function OperationComponent({
                 tasks.map(task => ({
                     ...task,
                     operations: task.operations.filter(
-                        operation => operation !== operationToDelete
+                        (operation: Operation) =>
+                            operation !== operationToDelete
                     ),
                 }))
             );
