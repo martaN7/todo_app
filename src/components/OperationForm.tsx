@@ -1,8 +1,11 @@
 import { Dispatch, FormEvent, useContext, useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import { callOperationsApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
 import { Operation } from '../helpers/BasicTypes.ts';
+import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 interface OperationFormProps {
     onCancel: Dispatch<number | null>;
@@ -49,10 +52,11 @@ function OperationForm({
         <form
             style={{
                 marginTop: 10,
+                marginLeft: 20,
+                paddingBottom: 10,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 5,
-                marginLeft: 20,
             }}
             onSubmit={handleAddOperation}
         >
@@ -65,24 +69,17 @@ function OperationForm({
                 value={value}
                 onChange={e => setValue(e.target.value)}
             />
-            <Button
-                variant="contained"
-                color="success"
-                size="small"
-                sx={{ textTransform: 'none' }}
-                type="submit"
-            >
-                Add
-            </Button>
-            <Button
-                variant="contained"
+            <IconButton type="submit" aria-label="add" color="success">
+                <LibraryAddIcon />
+            </IconButton>
+            <IconButton
+                type="button"
+                aria-label="cancel"
                 color="warning"
-                size="small"
-                sx={{ textTransform: 'none' }}
                 onClick={() => onCancel(null)}
             >
-                Cancel
-            </Button>
+                <CancelIcon />
+            </IconButton>
         </form>
     );
 }

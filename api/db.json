@@ -82,9 +82,16 @@
     {
       "description": "Operation 1",
       "addedDate": "2023-05-11T13:37:02.921Z",
-      "spentTime": 0,
+      "spentTime": 2,
       "taskId": 3,
       "id": 12
+    },
+    {
+      "description": "opr 345",
+      "addedDate": "2023-05-11T13:58:32.214Z",
+      "spentTime": 0,
+      "taskId": 3,
+      "id": 13
     }
   ]
 }

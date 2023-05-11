@@ -1,5 +1,7 @@
 import { Dispatch, FormEvent, useContext, useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import SaveIcon from '@mui/icons-material/Save';
 import { callOperationsApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
 import { Operation } from '../helpers/BasicTypes.ts';
@@ -32,7 +34,7 @@ function AddSpentTimeForm({ operation, onCancel }: AddSpentTimeProps) {
             onSubmit={handleAddSpentTime}
             style={{
                 display: 'flex',
-                gap: 5,
+                gap: 2,
                 alignItems: 'center',
                 marginRight: 50,
             }}
@@ -46,24 +48,35 @@ function AddSpentTimeForm({ operation, onCancel }: AddSpentTimeProps) {
                 value={value}
                 onChange={e => setValue(+e.target.value)}
             />
-            <Button
-                variant="contained"
-                size="small"
-                sx={{ textTransform: 'none' }}
-                type="submit"
-            >
-                Save
-            </Button>
-            <Button
-                variant="contained"
-                color="warning"
-                size="small"
-                sx={{ textTransform: 'none' }}
+            {/*<Button*/}
+            {/*    variant="contained"*/}
+            {/*    size="small"*/}
+            {/*    sx={{ textTransform: 'none' }}*/}
+            {/*    type="submit"*/}
+            {/*>*/}
+            {/*    Save*/}
+            {/*</Button>*/}
+            <IconButton type="submit" aria-label="save" color="success">
+                <SaveIcon />
+            </IconButton>
+            <IconButton
                 type="button"
+                aria-label="cancel"
+                color="warning"
                 onClick={() => onCancel(null)}
             >
-                Cancel
-            </Button>
+                <CancelIcon />
+            </IconButton>
+            {/*<Button*/}
+            {/*    variant="contained"*/}
+            {/*    color="warning"*/}
+            {/*    size="small"*/}
+            {/*    sx={{ textTransform: 'none' }}*/}
+            {/*    type="button"*/}
+            {/*    onClick={() => onCancel(null)}*/}
+            {/*>*/}
+            {/*    Cancel*/}
+            {/*</Button>*/}
         </form>
     );
 }

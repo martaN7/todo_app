@@ -4,6 +4,7 @@ import {
     Chip,
     Collapse,
     List,
+    ListItem,
     ListItemButton,
     ListItemText,
 } from '@mui/material';
@@ -129,11 +130,18 @@ function TaskComponent({ task }: TaskComponentPropsTypes) {
             </ListItemButton>
 
             {activeTaskId === task.id && (
-                <OperationForm
-                    taskId={task.id}
-                    onCancel={setActiveTaskId}
-                    setExpandTaskId={setExpandTaskId}
-                />
+                <ListItem
+                    sx={{
+                        bgcolor: '#f6f6f6',
+                        boxShadow: '0.2em 0.2em 0.4em rgba(0, 0, 0, 0.2)',
+                    }}
+                >
+                    <OperationForm
+                        taskId={task.id}
+                        onCancel={setActiveTaskId}
+                        setExpandTaskId={setExpandTaskId}
+                    />
+                </ListItem>
             )}
             <Collapse
                 in={expandTaskId === task.id}
