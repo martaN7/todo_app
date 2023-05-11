@@ -1,27 +1,33 @@
 import { useContext, useState } from 'react';
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import { Alert, Button, Stack, TextField, Typography } from '@mui/material';
 import { TasksContext } from '../helpers/TaskContext.tsx';
 import { callTasksApi } from '../helpers/Api.ts';
 
 function AddTaskForm() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [titleError, setTitleError] = useState(false);
     const { tasks, setTasks } = useContext(TasksContext);
 
     async function handleSubmit() {
-        const data = await callTasksApi({
-            data: {
-                addedDate: new Date(),
-                description,
-                name,
-                status: 'open',
-            },
-            method: 'post',
-        });
+        if (name !== '') {
+            const data = await callTasksApi({
+                data: {
+                    addedDate: new Date(),
+                    description,
+                    name,
+                    status: 'open',
+                },
+                method: 'post',
+            });
 
-        setTasks([...tasks, { ...data, operations: [] }]);
-        setName('');
-        setDescription('');
+            setTitleError(false);
+            setTasks([...tasks, { ...data, operations: [] }]);
+            setName('');
+            setDescription('');
+        } else {
+            setTitleError(true);
+        }
     }
 
     return (
@@ -55,6 +61,7 @@ function AddTaskForm() {
                 <Button variant="contained" type="submit">
                     Add
                 </Button>
+                {titleError && <Alert severity="error">Add task title!</Alert>}
             </Stack>
         </form>
     );

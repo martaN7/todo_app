@@ -1,5 +1,5 @@
 import { Dispatch, FormEvent, useContext, useState } from 'react';
-import { Button, IconButton, TextField } from '@mui/material';
+import { Alert, IconButton, TextField } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import SaveIcon from '@mui/icons-material/Save';
 import { callOperationsApi } from '../helpers/Api.ts';
@@ -12,33 +12,45 @@ interface AddSpentTimeProps {
 }
 function AddSpentTimeForm({ operation, onCancel }: AddSpentTimeProps) {
     const [value, setValue] = useState(0);
+    const [timeError, setTimeError] = useState(false);
 
     const { setTasks } = useContext(TasksContext);
 
     async function handleAddSpentTime(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        await callOperationsApi({
-            data: { spentTime: operation.spentTime + value },
-            id: operation.id,
-            method: 'patch',
-        });
+        if (value >= 0) {
+            await callOperationsApi({
+                data: { spentTime: operation.spentTime + value },
+                id: operation.id,
+                method: 'patch',
+            });
 
-        operation.spentTime += value;
-        setTasks(prev => [...prev]);
-        onCancel(null);
+            setTimeError(false);
+            operation.spentTime += value;
+            setTasks(prev => [...prev]);
+            onCancel(null);
+        } else {
+            setTimeError(true);
+        }
     }
 
     return (
         <form
             onSubmit={handleAddSpentTime}
             style={{
+                height: 50,
                 display: 'flex',
                 gap: 2,
                 alignItems: 'center',
                 marginRight: 50,
             }}
         >
+            {timeError && (
+                <Alert severity="error" style={{ marginRight: 5 }}>
+                    Add correct time!
+                </Alert>
+            )}
             <TextField
                 label="Spent time"
                 variant="outlined"
@@ -48,14 +60,6 @@ function AddSpentTimeForm({ operation, onCancel }: AddSpentTimeProps) {
                 value={value}
                 onChange={e => setValue(+e.target.value)}
             />
-            {/*<Button*/}
-            {/*    variant="contained"*/}
-            {/*    size="small"*/}
-            {/*    sx={{ textTransform: 'none' }}*/}
-            {/*    type="submit"*/}
-            {/*>*/}
-            {/*    Save*/}
-            {/*</Button>*/}
             <IconButton type="submit" aria-label="save" color="success">
                 <SaveIcon />
             </IconButton>
@@ -67,16 +71,6 @@ function AddSpentTimeForm({ operation, onCancel }: AddSpentTimeProps) {
             >
                 <CancelIcon />
             </IconButton>
-            {/*<Button*/}
-            {/*    variant="contained"*/}
-            {/*    color="warning"*/}
-            {/*    size="small"*/}
-            {/*    sx={{ textTransform: 'none' }}*/}
-            {/*    type="button"*/}
-            {/*    onClick={() => onCancel(null)}*/}
-            {/*>*/}
-            {/*    Cancel*/}
-            {/*</Button>*/}
         </form>
     );
 }

@@ -65,7 +65,7 @@ function TaskComponent({ task }: TaskComponentPropsTypes) {
         <Fragment key={task.id}>
             <ListItemButton
                 sx={{
-                    backgroundColor: '#e8e8e8',
+                    bgcolor: '#e8e8e8',
                     boxShadow: '0.2em 0.2em 0.4em rgba(0, 0, 0, 0.2)',
                     mt: 2,
                 }}
@@ -132,6 +132,7 @@ function TaskComponent({ task }: TaskComponentPropsTypes) {
             {activeTaskId === task.id && (
                 <ListItem
                     sx={{
+                        height: 90,
                         bgcolor: '#f6f6f6',
                         boxShadow: '0.2em 0.2em 0.4em rgba(0, 0, 0, 0.2)',
                     }}

@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import './index.css';
 import { Container, List } from '@mui/material';
 import { getOperationsApi, getTasksApi } from './helpers/Api.ts';
 import TaskComponent from './components/TaskComponent.tsx';
@@ -25,7 +26,7 @@ function App() {
     }, []);
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="md" sx={{ pb: 5 }}>
             <AddTaskForm />
             <List>
                 {tasks.map(task => (

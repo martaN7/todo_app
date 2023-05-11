@@ -1,10 +1,9 @@
 import { Dispatch, FormEvent, useContext, useState } from 'react';
-import { Button, IconButton, TextField } from '@mui/material';
+import { Alert, IconButton, TextField } from '@mui/material';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import { callOperationsApi } from '../helpers/Api.ts';
 import { TasksContext } from '../helpers/TaskContext.tsx';
 import { Operation } from '../helpers/BasicTypes.ts';
-import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 interface OperationFormProps {
@@ -19,33 +18,39 @@ function OperationForm({
     setExpandTaskId,
 }: OperationFormProps) {
     const [value, setValue] = useState('');
+    const [operationNameError, setOperationNameError] = useState(false);
 
     const { setTasks } = useContext(TasksContext);
 
     async function handleAddOperation(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        const operation: Operation = await callOperationsApi({
-            data: {
-                description: value,
-                addedDate: new Date(),
-                spentTime: 0,
-                taskId,
-            },
-            method: 'post',
-        });
+        if (value !== '') {
+            const operation: Operation = await callOperationsApi({
+                data: {
+                    description: value,
+                    addedDate: new Date(),
+                    spentTime: 0,
+                    taskId,
+                },
+                method: 'post',
+            });
 
-        setTasks(prev =>
-            prev.map(task => {
-                if (task.id === taskId) {
-                    task.operations.push(operation);
-                }
-                return task;
-            })
-        );
+            setOperationNameError(false);
+            setTasks(prev =>
+                prev.map(task => {
+                    if (task.id === taskId) {
+                        task.operations.push(operation);
+                    }
+                    return task;
+                })
+            );
 
-        onCancel(null);
-        setExpandTaskId(taskId);
+            onCancel(null);
+            setExpandTaskId(taskId);
+        } else {
+            setOperationNameError(true);
+        }
     }
 
     return (
@@ -53,7 +58,7 @@ function OperationForm({
             style={{
                 marginTop: 10,
                 marginLeft: 20,
-                paddingBottom: 10,
+                paddingBottom: 5,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 5,
@@ -80,6 +85,11 @@ function OperationForm({
             >
                 <CancelIcon />
             </IconButton>
+            {operationNameError && (
+                <Alert sx={{ p: 1, m: 1 }} severity="error">
+                    Add operation name!
+                </Alert>
+            )}
         </form>
     );
 }
