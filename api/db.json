@@ -1,4 +1,12 @@
 {
-  "tasks": [],
+  "tasks": [
+    {
+      "addedDate": "2023-05-11T15:21:27.243Z",
+      "description": "",
+      "name": "Task 1",
+      "status": "open",
+      "id": 1
+    }
+  ],
   "operations": []
 }
