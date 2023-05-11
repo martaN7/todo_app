@@ -64,7 +64,8 @@ function TaskComponent({ task }: TaskComponentPropsTypes) {
         <Fragment key={task.id}>
             <ListItemButton
                 sx={{
-                    backgroundColor: '#fafafa',
+                    backgroundColor: '#e8e8e8',
+                    boxShadow: '0.2em 0.2em 0.4em rgba(0, 0, 0, 0.2)',
                     mt: 2,
                 }}
                 onClick={() => handleExpandTask(task.id)}
@@ -142,7 +143,7 @@ function TaskComponent({ task }: TaskComponentPropsTypes) {
                 <List
                     sx={{
                         borderColor: '#d4d6d6',
-                        pt: 1,
+                        boxShadow: '0.2em 0.2em 0.4em rgba(0, 0, 0, 0.2)',
                     }}
                     component="div"
                     disablePadding

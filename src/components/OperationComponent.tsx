@@ -53,7 +53,8 @@ function OperationComponent({
                 pl: 3,
                 display: 'flex',
                 alignContent: 'center',
-                borderBottom: '1px solid #cccccc',
+                bgcolor: '#f6f6f6',
+                borderBottom: '1px solid #fff',
             }}
         >
             <ListItemText

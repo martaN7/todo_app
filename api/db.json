@@ -11,8 +11,15 @@
       "addedDate": "2023-05-03T16:37:44.446Z",
       "description": "sdasdjkaldjkladkjlakjdcasdasd",
       "name": "Task 2",
-      "status": "open",
+      "status": "closed",
       "id": 2
+    },
+    {
+      "addedDate": "2023-05-11T13:13:20.377Z",
+      "description": "sadad",
+      "name": "Task 3",
+      "status": "open",
+      "id": 3
     }
   ],
   "operations": [
@@ -54,7 +61,7 @@
     {
       "description": "opre",
       "addedDate": "2023-05-03T16:37:58.563Z",
-      "spentTime": 0,
+      "spentTime": 258,
       "taskId": 2,
       "id": 8
     },
@@ -64,6 +71,20 @@
       "spentTime": 0,
       "taskId": 2,
       "id": 9
+    },
+    {
+      "description": "opr 45",
+      "addedDate": "2023-05-04T16:34:15.246Z",
+      "spentTime": 0,
+      "taskId": 2,
+      "id": 11
+    },
+    {
+      "description": "Operation 1",
+      "addedDate": "2023-05-11T13:37:02.921Z",
+      "spentTime": 0,
+      "taskId": 3,
+      "id": 12
     }
   ]
 }
